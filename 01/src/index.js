@@ -1,7 +1,8 @@
   /** 
    * 入口
-   *  开发话环境打包 webpack ./src/index.js -o ./build/index.js --mode=development  
-   * 
+   *  开发话环境打包 webpack ./src/index.js -o ./build --mode=development  
+   *  开发话环境打包 webpack ./src/index.js -o ./build --mode=production  
+   *   webpack 只能打包js json 资源
   */
 
   function add(x, y){
