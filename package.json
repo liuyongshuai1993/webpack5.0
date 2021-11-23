@@ -23,6 +23,7 @@
     "html-webpack-plugin": "^5.5.0",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.4.5",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "scss-loader": "0.0.1",
