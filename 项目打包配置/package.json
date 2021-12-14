@@ -1,0 +1,65 @@
+{
+	"name": "weboacj",
+	"version": "1.0.0",
+	"description": "<!--\r  * @Descripttion: \r  * @version: \r  * @Author: 刘永帅\r  * @Date: 2021-11-22 15:22:12\r  * @LastEditors: 刘永帅\r  * @LastEditTime: 2021-11-22 15:23:22\r -->\r # 联系",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/liuyongshuai1993/webpack5.0.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/liuyongshuai1993/webpack5.0/issues"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	],
+	"eslintConfig": {
+		"extends": "airbnb-base",
+		"settings": {
+			"import/resolver": {
+				"webpack": {
+					"config": "webpack.config.js"
+				}
+			}
+		}
+	},
+	"homepage": "https://github.com/liuyongshuai1993/webpack5.0#readme",
+	"devDependencies": {
+		"@babel/core": "^7.16.0",
+		"@babel/preset-env": "^7.16.4",
+		"babel": "^6.23.0",
+		"babel-loader": "^8.2.3",
+		"core-js": "^3.19.1",
+		"css-loader": "^6.5.1",
+		"eslint": "^8.3.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-loader": "^4.0.2",
+		"eslint-plugin-import": "^2.25.3",
+		"eslint-webpack-plugin": "^3.1.1",
+		"file-loader": "^6.2.0",
+		"html-loader": "^3.0.1",
+		"html-webpack-plugin": "^5.5.0",
+		"less": "^4.1.2",
+		"less-loader": "^10.2.0",
+		"mini-css-extract-plugin": "^2.4.5",
+		"postcss": "^8.3.11",
+		"postcss-loader": "^6.2.0",
+		"postcss-preset-env": "^7.0.1",
+		"sass": "^1.43.4",
+		"sass-loader": "^12.3.0",
+		"scss-loader": "0.0.1",
+		"style-loader": "^3.3.1",
+		"url": "^0.11.0",
+		"url-loader": "^4.1.1",
+		"webpack": "^5.64.2",
+		"webpack-cli": "^4.9.1",
+		"webpack-dev-server": "^4.5.0"
+	}
+}
