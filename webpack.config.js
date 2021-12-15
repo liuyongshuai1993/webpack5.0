@@ -4,7 +4,7 @@
  * @Author: 刘永帅
  * @Date: 2021-12-14 10:14:52
  * @LastEditors: 刘永帅
- * @LastEditTime: 2021-12-14 14:48:25
+ * @LastEditTime: 2021-12-15 10:26:48
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -55,9 +55,14 @@ module.exports = {
 			{
 				test: /\.(css|less)$/i,
 				// 链式 从后至前；链式调用；链式的每一个loader都可以对我们的源进行转换  逆序的
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'postcss-loader',
+					'less-loader',
+				],
 			},
-            {
+			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
 				type: 'asset/source',
 			},
@@ -70,14 +75,12 @@ module.exports = {
 			inject: 'body', // 指定文件打包位置
 		}),
 		new MiniCssExtractPlugin({
-			filename: 'styles/[contenthash].css',
+			filename: 'styles/build.css',
 		}),
 	],
 	// 优化配置中
 	optimization: {
 		minimize: true,
-		minimizer: [
-			new CssMinimizerPlugin(),
-		],
+		minimizer: [new CssMinimizerPlugin()],
 	},
 }
