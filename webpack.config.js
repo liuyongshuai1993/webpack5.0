@@ -4,17 +4,25 @@
  * @Author: 刘永帅
  * @Date: 2021-12-14 10:14:52
  * @LastEditors: 刘永帅
- * @LastEditTime: 2021-12-15 10:26:48
+ * @LastEditTime: 2021-12-15 16:02:49
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-
+const toml = require('toml')
+const yaml = require('yaml')
+const json5 = require('json5')
 const path = require('path')
+
 module.exports = {
-	entry: './src/index.js', //入口
+	entry: {
+		//多入口
+		index: './src/index.js',
+		another: './src/another-module.js',
+	},
+
 	output: {
-		filename: 'bundle.js', // 出口文件名
+		filename: '[name][contenthash].js', // 出口文件名
 		path: path.resolve(__dirname, './dist'), // 输出路径  必须式绝对路径
 		clean: true, //清理打包文件夹
 		assetModuleFilename: 'images/[contenthash][ext]', // 设置资源路径文件名
@@ -66,6 +74,38 @@ module.exports = {
 				test: /\.(woff|woff2|eot|ttf|otf)$/i,
 				type: 'asset/source',
 			},
+			{
+				test: /\.toml$/,
+				type: 'json',
+				parser: {
+					parse: toml.parse,
+				},
+			},
+			{
+				test: /\.yaml$/,
+				type: 'json',
+				parser: {
+					parse: yaml.parse,
+				},
+			},
+			{
+				test: /\.json5$/,
+				type: 'json',
+				parser: {
+					parse: json5.parse,
+				},
+			},
+			{
+				test: /\.m?js$/,
+				exclude: /(node_modules|bower_components)/, // 忽略文件
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+						plugins: [['@babel/plugin-transform-runtime']],
+					},
+				},
+			},
 		],
 	},
 	plugins: [
@@ -82,5 +122,10 @@ module.exports = {
 	optimization: {
 		minimize: true,
 		minimizer: [new CssMinimizerPlugin()],
+        
+        // 开箱即用 多入口配置 代码抽离
+        splitChunks: {
+            chunks: 'all',
+        }
 	},
 }

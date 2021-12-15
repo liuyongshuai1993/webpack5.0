@@ -2,5 +2,7 @@
  color: red;
 }
 h2{
-    /* background-image: url(./assets/pangxie.svg) !important; */
+    display: flex;
+
+    background-image: url(./assets/pangxie.svg) !important;
 }
