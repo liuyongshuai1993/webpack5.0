@@ -4,6 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"start": " webpack server -c ./config/webpack.config.js --open --env development",
+		"build": " webpack server -c ./config/webpack.config.js  --env production",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
@@ -44,8 +46,10 @@
 		"postcss-loader": "^6.2.1",
 		"postcss-preset-env": "^7.0.1",
 		"style-loader": "^3.3.1",
+		"terser-webpack-plugin": "^5.3.0",
 		"toml": "^3.0.0",
 		"webpack-dev-server": "^4.6.0",
+		"webpack-merge": "^5.8.0",
 		"yaml": "^1.10.2"
 	}
 }

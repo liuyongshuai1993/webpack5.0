@@ -86,9 +86,9 @@
      	],
      };
      ```
-
+    
      package.json
-
+    
      ```json
        "browserslist": [
      		"> 1%",
@@ -96,9 +96,9 @@
      		"not ie <= 8"
      	],
      ```
-
+    
      #### 自定义json模块 解析打包 三种格式 toml yaml json5
-
+    
      ```
       npm i  toml yaml json5 -D
      
@@ -110,32 +110,32 @@
           }
       },
      ```
-
+    
      ####  babel-loader 
-
+    
      ```
      npm install -D babel-loader @babel/core @babel/preset-env   
      
      npm install -D @babel/plugin-transform-runtime @babel/runtime
      ```
-
+    
      - babel-loader 在webpack里面应用babel解析ES6的桥梁
      - @babel-core babel的核心模块
      - @babel-env babel预设 一组babel插件的集合  整合一组插件到一个文件中
-
+    
      #### 代码分离
-
+    
       - 多入口
-
+    
         ```
         entry: {
                 index:'./src/index.js',
                 another:'./src/another-module.js'
             }, //入口  弊端：代码重复；多个chunk打包同一样的资源
         ```
-
+    
         多入口共享资源
-
+    
         ```
         	entry: {
         		index: {
@@ -149,11 +149,11 @@
         		shared: 'lodash',
         	}, 
         ```
-
+    
         ​	SplitChunksPlugin  使用webpack内置方法
-
+    
         		-  最初，chunks（以及内部导入的模块）是通过内部 webpack 图谱中的父子关系关联的。`CommonsChunkPlugin` 曾被用来避免他们之间的重复依赖，但是不可能再做进一步的优化。
-
+    
         ```
          optimization: { 
          	splitChunks: {
@@ -161,11 +161,11 @@
                 }
            }
         ```
-
+    
         动态导入 dynamic import
-
+    
         - 当涉及到动态代码拆分时，webpack 提供了两个类似的技术。第一种，也是推荐选择的方式是，使用符合 [ECMAScript 提案](https://github.com/tc39/proposal-dynamic-import) 的 [`import()` 语法](https://webpack.docschina.org/api/module-methods/#import-1) 来实现动态导入。第二种，则是 webpack 的遗留功能，使用 webpack 特定的 [`require.ensure`](https://webpack.docschina.org/api/module-methods/#requireensure)。
-
+    
         ```
         
         // 实现懒加载效果
@@ -183,13 +183,51 @@
         	})
         })
         ```
-
+    
         预获取/预加载模块 **(prefetch/preload module)**
-
+    
         - **prefetch**(预获取)：将来某些导航下可能需要的资源
         - **preload**(预加载)：当前导航下可能需要资源
-
+    
         ![image-20211215154826056](E:\work\GitLab\webpack\webpack5.0\src\assets\image-20211215154826056.png)
-
+    
         并追加到页面头部，指示着浏览器在闲置时间预取 `math.bundle.js` 文件。
 
+
+
+
+
+#### 公共路径
+
+##### 环境变量
+
+`npx webpack --env production`
+
+````
+npx webpack --env production --env goal=local
+
+module.exports = (env) => {
+	console.log(env)  // { WEBPACK_BUNDLE: true, WEBPACK_BUILD: true, production: true, goal: 'local' }
+	return{
+		entry:{},
+		mode: env.production ? 'production' : 'development',
+	}
+}
+````
+
+- js 代码压缩
+
+` npm install terser-webpack-plugin --save-dev `
+
+````
+optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
+}
+````
+
+
+
+
+
+` npm i webpack-merge -D`
